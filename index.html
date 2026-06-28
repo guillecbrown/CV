@@ -7,7 +7,7 @@
 <meta name="description" content="Guillermo Cervantes Brown — Economista. Regulación, competencia y economía ambiental.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#141414;
@@ -17,6 +17,7 @@
     --accent:#1452cc;
     --chip:#f1f1ef;
     --max:960px;
+    --tl-left:210px;
     --col-node:48px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -28,12 +29,19 @@
     line-height:1.6;
     font-size:16px;
     -webkit-font-smoothing:antialiased;
-    padding:64px 24px 96px;
+    padding:48px 24px 96px;
   }
   .wrap{max-width:var(--max);margin:0 auto}
 
   /* ---- top bar ---- */
-  .topbar{display:flex;justify-content:flex-end;margin-bottom:34px}
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:56px;
+  }
+  .topbar .name-small{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);
+    letter-spacing:.5px;
+  }
   .topbar a{
     font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);
     text-decoration:none;border:1px solid var(--faint);border-radius:6px;
@@ -41,25 +49,68 @@
   }
   .topbar a:hover{color:var(--ink);border-color:var(--muted)}
 
-  /* ---- header ---- */
-  h1.name{
-    font-size:clamp(28px,5.4vw,40px);font-weight:700;letter-spacing:-1px;
-    color:var(--ink);line-height:1.08;
+  /* ---- hero ---- */
+  .hero{margin-bottom:56px}
+
+  .hero-headline{
+    font-size:clamp(38px,6.5vw,64px);
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.04;
+    letter-spacing:-2.5px;
+    max-width:18ch;
+    margin-bottom:40px;
   }
-  h1.name .arrow{color:var(--muted);font-weight:400}
-  h1.name .role{
-    font-family:'JetBrains Mono',monospace;font-size:.5em;font-weight:500;
-    color:var(--muted);letter-spacing:0;vertical-align:middle;
+  .hero-headline .mono{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:500;
+    font-size:.82em;
+    letter-spacing:-1px;
+    color:var(--soft);
   }
-  .lede{
-    margin-top:18px;font-size:18px;line-height:1.55;color:var(--soft);
-    max-width:56ch;font-weight:400;
+
+  .hero-bio-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 40px;
   }
+  .hero-bio{
+    grid-column:2;
+    font-size:15.5px;
+    line-height:1.6;
+    color:var(--soft);
+  }
+  .hero-bio p + p{margin-top:12px}
+  .hero-contact{
+    margin-top:14px;
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:4px 0;align-items:center;
+  }
+  .hero-contact a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--faint)}
+  .hero-contact a:hover{color:var(--accent);border-color:var(--accent)}
+  .hero-contact .sep{margin:0 8px;color:var(--faint)}
+
   code{
     font-family:'JetBrains Mono',monospace;font-size:.86em;
     background:var(--chip);color:var(--ink);padding:1.5px 6px;border-radius:5px;
     white-space:nowrap;
   }
+
+  /* ---- subheadline ---- */
+  .subhead{
+    font-size:clamp(20px,3vw,26px);
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.2;
+    letter-spacing:-.7px;
+    margin-bottom:24px;
+    max-width:50ch;
+  }
+  .stats{
+    font-family:'JetBrains Mono',monospace;font-size:13px;
+    color:var(--muted);line-height:2;margin-bottom:40px;
+  }
+  .stats span{display:block}
 
   /* ---- ascii rule ---- */
   .rule{
@@ -77,29 +128,23 @@
   }
   .sec::before{content:"## ";color:var(--faint)}
 
-  /* ---- contact ---- */
-  .contact{
-    font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--muted);
-    display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;
-  }
-  .contact a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--faint)}
-  .contact a:hover{color:var(--accent);border-color:var(--accent)}
-  .contact .dot{color:var(--faint)}
-
   /* ---- timeline ---- */
   .tl{position:relative}
   .tl::before{
-    content:"";position:absolute;top:9px;bottom:9px;left:calc(50% - 1px);
+    content:"";position:absolute;top:9px;bottom:9px;
+    left:calc(var(--tl-left) + var(--col-node)/2 - 1px);
     width:2px;background:var(--faint);
   }
   .item{
-    display:grid;grid-template-columns:1fr var(--col-node) 1fr;
+    display:grid;
+    grid-template-columns:var(--tl-left) var(--col-node) 1fr;
     align-items:start;padding-bottom:34px;
   }
   .item:last-child{padding-bottom:0}
   .yr{
-    text-align:right;font-size:14px;color:var(--muted);padding-top:4px;
+    text-align:right;font-size:13.5px;color:var(--muted);padding-top:4px;
     white-space:nowrap;font-variant-numeric:tabular-nums;
+    font-family:'JetBrains Mono',monospace;
   }
   .node{position:relative}
   .node::before{
@@ -109,19 +154,19 @@
   }
   .node.sub::before{width:10px;height:10px;border-color:var(--muted);border-width:2px;top:6px}
 
-  .item h3{font-size:19px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.2px}
+  .item h3{font-size:18px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.2px}
   .item h3 .at{font-weight:400;color:var(--muted)}
-  .item .desc{font-size:15px;color:var(--soft);margin-top:7px;max-width:58ch;line-height:1.5}
+  .item .desc{font-size:14.5px;color:var(--muted);margin-top:6px;max-width:58ch;line-height:1.5}
   .item ul{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:5px;max-width:60ch}
   .item li{position:relative;padding-left:18px;font-size:14.5px;color:var(--soft);line-height:1.55}
   .item li::before{content:"–";position:absolute;left:0;color:var(--muted);font-family:'JetBrains Mono',monospace}
   .item li b{color:var(--ink);font-weight:600}
-  .bl{margin-top:11px;font-size:14.5px;color:var(--soft);line-height:1.5;max-width:60ch}
+  .bl{margin-top:11px;font-size:14px;color:var(--soft);line-height:1.5;max-width:60ch}
   .bl .lbl{font-weight:700;color:var(--ink)}
   .bl .arr{color:var(--muted);margin:0 4px}
 
   /* ---- early-career toggle ---- */
-  .more-wrap{display:flex;justify-content:center;margin-top:2px}
+  .more-wrap{display:flex;justify-content:flex-start;padding-left:calc(var(--tl-left) + var(--col-node));margin-top:2px}
   .more-btn{
     font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--soft);
     background:var(--chip);border:1px solid var(--faint);border-radius:8px;
@@ -154,13 +199,16 @@
 
   /* ---- responsive ---- */
   @media (max-width:760px){
-    body{padding:40px 18px 60px}
+    body{padding:32px 18px 60px}
+    .topbar{margin-bottom:40px}
+    .hero-bio-wrap{grid-template-columns:1fr}
+    .hero-bio{grid-column:1}
+    .hero-headline{letter-spacing:-1.5px}
     .tl::before,.node{display:none}
     .item{grid-template-columns:1fr;gap:0}
-    .more-wrap{justify-content:flex-start}
-    .yr{text-align:left;padding-top:0;margin-bottom:2px;font-family:'JetBrains Mono',monospace;font-size:13px}
+    .more-wrap{padding-left:18px;justify-content:flex-start}
+    .yr{text-align:left;padding-top:0;margin-bottom:2px;font-size:13px}
     .item{border-left:2px solid var(--faint);padding-left:18px;padding-bottom:26px}
-    .more-btn{margin-left:18px}
     .rule{margin:28px 0}
   }
 
@@ -168,10 +216,10 @@
   @media print{
     @page{size:A4;margin:14mm}
     body{padding:0;font-size:11px}
-    .topbar,footer,.more-btn{display:none!important}
+    .topbar a,footer,.more-btn{display:none!important}
     .early-group{max-height:none!important;-webkit-mask-image:none!important;mask-image:none!important}
     .rule{color:#ccc;margin:18px 0}
-    .item,.edu{page-break-inside:avoid}
+    .item{page-break-inside:avoid}
     code{background:#f3f3f3!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .node::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
@@ -180,26 +228,42 @@
 <body>
 <div class="wrap">
 
+  <!-- top bar -->
   <div class="topbar">
+    <span class="name-small">Guillermo Cervantes Brown</span>
     <a href="#" onclick="window.print();return false;">[ descargar pdf ]</a>
   </div>
 
-  <h1 class="name">Guillermo Cervantes Brown <span class="arrow">→</span> <span class="role">economista</span></h1>
-  <p class="lede">
-    Hago análisis económico aplicado a la <code>regulación</code>, la <code>competencia</code> y la <code>economía&nbsp;ambiental</code> — del diseño y evaluación de multas a la evaluación de políticas públicas en el sector público.
-  </p>
+  <!-- hero -->
+  <div class="hero">
+    <h1 class="hero-headline">
+      Analizo mercados, evalúo <span class="mono">regulación()</span> y construyo herramientas que automatizan el trabajo técnico.
+    </h1>
 
-  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
-
-  <div class="contact">
-    <a href="mailto:guille.cervantes.brown@gmail.com">guille.cervantes.brown@gmail.com</a>
-    <span class="dot">·</span>
-    <a href="tel:+51961443614">+51 961 443 614</a>
-    <span class="dot">·</span>
-    <span>Lima, Perú</span>
+    <div class="hero-bio-wrap">
+      <div class="hero-bio">
+        <p>Economista con más de una década en el sector público y privado, especializado en economía de la <code>competencia</code>, <code>regulación ambiental</code> y <code>políticas públicas</code>.</p>
+        <p>Actualmente abierto a nuevos roles en análisis regulatorio, consultoría económica o gestión de datos.</p>
+        <div class="hero-contact">
+          <a href="mailto:guille.cervantes.brown@gmail.com">guille.cervantes.brown@gmail.com</a>
+          <span class="sep">·</span>
+          <a href="tel:+51961443614">+51 961 443 614</a>
+          <span class="sep">·</span>
+          <span>Lima, Perú</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
+
+  <p class="subhead">Más de una década construyendo análisis económico aplicado en regulación, competencia y política pública.</p>
+
+  <div class="stats">
+    <span>10+ años en el sector público y privado.</span>
+    <span>Equipos en OEFA, INDECOPI, MTC y firmas legales.</span>
+    <span>De practicante a analista senior y consultor independiente.</span>
+  </div>
 
   <div class="sec">experiencia</div>
 
@@ -263,7 +327,7 @@
       </div>
     </div>
 
-    <!-- ---- inicios de carrera (se desvanecen hasta el botón) ---- -->
+    <!-- inicios de carrera -->
     <div class="early-group" id="earlyGroup">
     <div class="item" id="early1">
       <div class="yr">2014–2015</div>
