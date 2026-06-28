@@ -16,10 +16,8 @@
     --faint:#dcdcdc;
     --accent:#1452cc;
     --chip:#f1f1ef;
-    --max:820px;
-    --col-yr:150px;
-    --col-node:44px;
-    --line-x:171px;   /* col-yr + col-node/2 - 1 */
+    --max:960px;
+    --col-node:48px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -91,11 +89,11 @@
   /* ---- timeline ---- */
   .tl{position:relative}
   .tl::before{
-    content:"";position:absolute;top:9px;bottom:9px;left:var(--line-x);
+    content:"";position:absolute;top:9px;bottom:9px;left:calc(50% - 1px);
     width:2px;background:var(--faint);
   }
   .item{
-    display:grid;grid-template-columns:var(--col-yr) var(--col-node) 1fr;
+    display:grid;grid-template-columns:1fr var(--col-node) 1fr;
     align-items:start;padding-bottom:34px;
   }
   .item:last-child{padding-bottom:0}
@@ -123,16 +121,19 @@
   .bl .arr{color:var(--muted);margin:0 4px}
 
   /* ---- early-career toggle ---- */
-  .more-wrap{display:grid;grid-template-columns:var(--col-yr) var(--col-node) 1fr;margin-top:2px}
+  .more-wrap{display:flex;justify-content:center;margin-top:2px}
   .more-btn{
-    grid-column:3;justify-self:start;
     font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--soft);
     background:var(--chip);border:1px solid var(--faint);border-radius:8px;
     padding:8px 16px;cursor:pointer;transition:border-color .15s,color .15s;
   }
   .more-btn:hover{border-color:var(--muted);color:var(--ink)}
-  .early{display:none}
-  .early.open{display:grid}
+  .early-group{
+    position:relative;max-height:132px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 20%,transparent 88%);
+    mask-image:linear-gradient(to bottom,#000 0%,#000 20%,transparent 88%);
+  }
+  .early-group.open{max-height:none;-webkit-mask-image:none;mask-image:none}
 
   /* ---- skills ---- */
   .skills{display:flex;flex-direction:column;gap:14px}
@@ -152,10 +153,11 @@
   }
 
   /* ---- responsive ---- */
-  @media (max-width:620px){
+  @media (max-width:760px){
     body{padding:40px 18px 60px}
     .tl::before,.node{display:none}
-    .item,.more-wrap{grid-template-columns:1fr;gap:0}
+    .item{grid-template-columns:1fr;gap:0}
+    .more-wrap{justify-content:flex-start}
     .yr{text-align:left;padding-top:0;margin-bottom:2px;font-family:'JetBrains Mono',monospace;font-size:13px}
     .item{border-left:2px solid var(--faint);padding-left:18px;padding-bottom:26px}
     .more-btn{margin-left:18px}
@@ -167,7 +169,7 @@
     @page{size:A4;margin:14mm}
     body{padding:0;font-size:11px}
     .topbar,footer,.more-btn{display:none!important}
-    .early{display:grid!important}
+    .early-group{max-height:none!important;-webkit-mask-image:none!important;mask-image:none!important}
     .rule{color:#ccc;margin:18px 0}
     .item,.edu{page-break-inside:avoid}
     code{background:#f3f3f3!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -261,8 +263,9 @@
       </div>
     </div>
 
-    <!-- ---- inicios de carrera (ocultos) ---- -->
-    <div class="item early" id="early1">
+    <!-- ---- inicios de carrera (se desvanecen hasta el botón) ---- -->
+    <div class="early-group" id="earlyGroup">
+    <div class="item" id="early1">
       <div class="yr">2014–2015</div>
       <div class="node sub"></div>
       <div>
@@ -276,7 +279,7 @@
       </div>
     </div>
 
-    <div class="item early" id="early2">
+    <div class="item" id="early2">
       <div class="yr">2013–2014</div>
       <div class="node sub"></div>
       <div>
@@ -289,7 +292,7 @@
       </div>
     </div>
 
-    <div class="item early" id="early3">
+    <div class="item" id="early3">
       <div class="yr">2012–2013</div>
       <div class="node sub"></div>
       <div>
@@ -300,6 +303,7 @@
           <li>Elaboré proyectos de investigación para financiamiento nacional e internacional (CIES, USAID, IDRC, entre otros).</li>
         </ul>
       </div>
+    </div>
     </div>
 
     <div class="more-wrap">
@@ -395,7 +399,7 @@
 <script>
   document.getElementById('yr').textContent=new Date().getFullYear();
   function toggleEarly(){
-    document.querySelectorAll('.early').forEach(function(el){el.classList.add('open')});
+    document.getElementById('earlyGroup').classList.add('open');
     document.getElementById('moreBtn').parentElement.style.display='none';
   }
 </script>
