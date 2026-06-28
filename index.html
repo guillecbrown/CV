@@ -4,389 +4,350 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guillermo Cervantes Brown — Economista</title>
-<meta name="description" content="CV de Guillermo Cervantes Brown — Economista especialista en regulación, competencia y economía ambiental.">
+<meta name="description" content="Guillermo Cervantes Brown — Economista. Regulación, competencia y economía ambiental.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#1a1a1a;
-    --soft:#444;
-    --muted:#8a8a8a;
-    --line:#e6e6e6;
-    --line-strong:#1a1a1a;
-    --bg:#fff;
-    --max:760px;
+    --ink:#141414;
+    --soft:#3d3d3d;
+    --muted:#9a9a9a;
+    --faint:#dcdcdc;
+    --accent:#1452cc;
+    --chip:#f1f1ef;
+    --max:680px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
     font-family:'Inter',system-ui,-apple-system,sans-serif;
     color:var(--soft);
-    background:#fafafa;
-    line-height:1.65;
-    font-size:15px;
-    font-weight:400;
+    background:#fff;
+    line-height:1.62;
+    font-size:16px;
     -webkit-font-smoothing:antialiased;
-    padding:40px 20px 80px;
+    padding:64px 24px 96px;
+  }
+  .wrap{max-width:var(--max);margin:0 auto}
+
+  mono,.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+
+  /* ---- top bar ---- */
+  .topbar{display:flex;justify-content:flex-end;margin-bottom:34px}
+  .topbar a{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);
+    text-decoration:none;border:1px solid var(--faint);border-radius:6px;
+    padding:5px 11px;transition:color .15s,border-color .15s;
+  }
+  .topbar a:hover{color:var(--ink);border-color:var(--muted)}
+
+  /* ---- header ---- */
+  h1.name{
+    font-size:clamp(28px,5.4vw,40px);font-weight:700;letter-spacing:-1px;
+    color:var(--ink);line-height:1.08;
+  }
+  h1.name .arrow{color:var(--muted);font-weight:400}
+  h1.name .role{
+    font-family:'JetBrains Mono',monospace;font-size:.5em;font-weight:500;
+    color:var(--muted);letter-spacing:0;vertical-align:middle;
+  }
+  .lede{
+    margin-top:18px;font-size:18px;line-height:1.55;color:var(--soft);
+    max-width:54ch;font-weight:400;
   }
 
-  /* ---------- Toolbar ---------- */
-  .toolbar{
-    max-width:var(--max);margin:0 auto 20px;
-    display:flex;justify-content:flex-end;
-  }
-  .btn{
-    font-family:inherit;font-size:12.5px;font-weight:500;letter-spacing:.4px;
-    color:var(--muted);background:none;border:none;cursor:pointer;
-    display:inline-flex;align-items:center;gap:7px;padding:6px 4px;
-    transition:color .15s ease;
-  }
-  .btn:hover{color:var(--ink)}
-  .btn svg{width:15px;height:15px}
-
-  /* ---------- Sheet ---------- */
-  .sheet{
-    max-width:var(--max);margin:0 auto;
-    background:var(--bg);
-    padding:72px 76px;
-    border:1px solid var(--line);
-    box-shadow:0 1px 30px -18px rgba(0,0,0,.25);
+  /* ---- code accents ---- */
+  code{
+    font-family:'JetBrains Mono',monospace;font-size:.86em;
+    background:var(--chip);color:var(--ink);padding:1.5px 6px;border-radius:5px;
+    white-space:nowrap;
   }
 
-  /* ---------- Header ---------- */
-  header{
-    padding-bottom:30px;margin-bottom:8px;
-    border-bottom:1px solid var(--line-strong);
+  /* ---- ascii rule ---- */
+  .rule{
+    font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1;
+    color:var(--faint);overflow:hidden;white-space:nowrap;user-select:none;
+    margin:34px 0;letter-spacing:1px;
   }
-  .name{
-    font-size:clamp(28px,5vw,38px);
-    font-weight:600;
-    letter-spacing:-.6px;
-    color:var(--ink);
-    line-height:1.1;
+  .rule.thin{color:#ececec}
+
+  /* ---- section header ---- */
+  .sec{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;
+    letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+    margin-bottom:22px;
   }
-  .role{
-    margin-top:8px;
-    font-size:14.5px;font-weight:400;
-    color:var(--soft);
-    letter-spacing:.2px;
-  }
+  .sec::before{content:"## ";color:var(--faint)}
+
+  /* ---- contact ---- */
   .contact{
-    margin-top:20px;
-    display:flex;flex-wrap:wrap;gap:6px 22px;
-    font-size:13px;color:var(--muted);
+    font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;
   }
-  .contact a{color:var(--muted);text-decoration:none;transition:color .15s ease}
-  .contact a:hover{color:var(--ink)}
-  .contact span:not(:last-child)::after,
-  .contact a:not(:last-of-type)::after{content:""}
+  .contact a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--faint)}
+  .contact a:hover{color:var(--accent);border-color:var(--accent)}
+  .contact .dot{color:var(--faint)}
 
-  /* ---------- Section layout ---------- */
-  section{
-    display:grid;
-    grid-template-columns:140px 1fr;
-    gap:28px;
-    padding:30px 0;
-    border-bottom:1px solid var(--line);
-  }
-  section:last-of-type{border-bottom:none;padding-bottom:0}
-  .label{
-    font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
-    color:var(--muted);
-    padding-top:3px;
-  }
-  .body{min-width:0}
-
-  .summary{font-size:14.5px;color:var(--soft)}
-
-  /* ---------- Experience ---------- */
-  .entry{margin-bottom:24px}
+  /* ---- entry ---- */
+  .entry{display:grid;grid-template-columns:58px 1fr;gap:22px;margin-bottom:26px}
   .entry:last-child{margin-bottom:0}
-  .entry-head{
-    display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+  .yr{
+    font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;
+    color:var(--muted);padding-top:3px;white-space:nowrap;
   }
-  .entry .jt{font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.35}
-  .entry .when{font-size:12px;color:var(--muted);font-weight:400;white-space:nowrap;flex:none}
-  .entry .org{font-size:13.5px;color:var(--soft);font-weight:500;margin-top:1px}
-  .entry ul{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:5px}
-  .entry li{
-    position:relative;padding-left:16px;font-size:13.5px;color:var(--soft);line-height:1.55;
-  }
-  .entry li::before{
-    content:"–";position:absolute;left:0;color:var(--muted);
-  }
+  .entry h3{font-size:16.5px;font-weight:600;color:var(--ink);line-height:1.35}
+  .entry .org{font-size:14.5px;color:var(--soft);margin-top:1px}
+  .entry .org b{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.92em;color:var(--ink)}
+  .entry ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:6px}
+  .entry li{position:relative;padding-left:18px;font-size:14.5px;color:var(--soft);line-height:1.55}
+  .entry li::before{content:"–";position:absolute;left:0;color:var(--muted);font-family:'JetBrains Mono',monospace}
   .entry li b{color:var(--ink);font-weight:600}
-
-  /* ---------- Education ---------- */
-  .edu{margin-bottom:20px}
-  .edu:last-child{margin-bottom:0}
-  .edu .deg{font-size:14px;font-weight:600;color:var(--ink);line-height:1.35}
-  .edu .org{font-size:13px;color:var(--soft);margin-top:1px}
-  .edu .when{font-size:12px;color:var(--muted);margin-top:1px}
-  .edu .note{font-size:12.5px;color:var(--muted);margin-top:5px;font-style:italic;line-height:1.45}
-
-  /* ---------- Skills ---------- */
-  .skill-block{margin-bottom:16px}
-  .skill-block:last-child{margin-bottom:0}
-  .skill-block h4{
-    font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;
+  .bl{
+    margin-top:11px;font-size:13.5px;color:var(--soft);
+    padding:8px 12px;background:var(--chip);border-radius:7px;line-height:1.5;
   }
-  .skill-block p{font-size:13px;color:var(--soft);line-height:1.55}
+  .bl::before{
+    content:"en corto →";font-family:'JetBrains Mono',monospace;font-size:11.5px;
+    font-weight:600;letter-spacing:.5px;color:var(--muted);margin-right:8px;
+    text-transform:uppercase;
+  }
+  .bl b{color:var(--ink);font-weight:600}
 
-  .meta-row{display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:2px 0}
-  .meta-row + .meta-row{border-top:1px solid var(--line)}
-  .meta-row b{font-weight:500;color:var(--ink)}
-  .meta-row span{color:var(--muted)}
+  /* ---- education / generic two-col ---- */
+  .edu{display:grid;grid-template-columns:58px 1fr;gap:22px;margin-bottom:18px}
+  .edu:last-child{margin-bottom:0}
+  .edu h3{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.35}
+  .edu .org{font-size:14px;color:var(--soft);margin-top:1px}
+  .edu .note{font-size:13px;color:var(--muted);font-style:italic;margin-top:4px;line-height:1.45}
 
-  /* ---------- Otros ---------- */
-  .extra{margin-bottom:18px}
-  .extra:last-child{margin-bottom:0}
-  .extra h4{font-size:14px;font-weight:600;color:var(--ink)}
-  .extra .when{font-size:12px;color:var(--muted);font-weight:400}
-  .extra p{font-size:13px;color:var(--soft);margin-top:3px;line-height:1.55}
-  .course{font-size:13px;color:var(--soft);line-height:1.5;margin-top:6px}
-  .course b{color:var(--ink);font-weight:500}
+  /* ---- skills ---- */
+  .skills{display:flex;flex-direction:column;gap:14px}
+  .skill h4{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px}
+  .skill p{font-size:14px;color:var(--soft);line-height:1.55}
+  .stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+
+  /* ---- misc lines ---- */
+  .line{font-size:14.5px;color:var(--soft);line-height:1.6}
+  .line + .line{margin-top:10px}
+  .line b{color:var(--ink);font-weight:600}
+  .line .when{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted)}
 
   footer{
-    max-width:var(--max);margin:24px auto 0;text-align:center;
-    font-size:11.5px;color:#b3b3b3;letter-spacing:.3px;
+    margin-top:44px;font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--muted);
   }
 
-  /* ---------- Responsive ---------- */
-  @media (max-width:680px){
-    body{padding:24px 12px 50px}
-    .sheet{padding:40px 26px}
-    section{grid-template-columns:1fr;gap:12px;padding:24px 0}
-    .label{padding-top:0}
-    .entry-head{gap:2px}
+  /* ---- responsive ---- */
+  @media (max-width:560px){
+    body{padding:40px 18px 60px}
+    .entry,.edu{grid-template-columns:1fr;gap:6px}
+    .yr{padding-top:0}
+    .rule{margin:28px 0}
   }
 
-  /* ---------- Print ---------- */
+  /* ---- print ---- */
   @media print{
     @page{size:A4;margin:14mm}
-    body{background:#fff;padding:0;font-size:10.5px}
-    .toolbar,footer{display:none!important}
-    .sheet{box-shadow:none;border:none;max-width:none;padding:0}
-    section{padding:16px 0;grid-template-columns:130px 1fr;gap:20px}
+    body{padding:0;font-size:11px}
+    .topbar,footer{display:none!important}
+    .rule{color:#ccc}
     .entry,.edu{page-break-inside:avoid}
+    code,.bl{background:#f3f3f3!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .rule{margin:18px 0}
   }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<div class="toolbar">
-  <button class="btn" onclick="window.print()" title="Imprimir o guardar como PDF">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    Descargar PDF
-  </button>
-</div>
+  <div class="topbar">
+    <a href="#" onclick="window.print();return false;">[ descargar pdf ]</a>
+  </div>
 
-<div class="sheet">
+  <h1 class="name">Guillermo Cervantes Brown <span class="arrow">→</span> <span class="role">economista</span></h1>
+  <p class="lede">
+    Hago análisis económico aplicado a la <code>regulación</code>, la <code>competencia</code> y la <code>economía&nbsp;ambiental</code> — del diseño y evaluación de multas a la evaluación de políticas públicas en el sector público.
+  </p>
 
-  <header>
-    <h1 class="name">Guillermo Cervantes Brown</h1>
-    <p class="role">Economista · Regulación, Competencia y Economía Ambiental</p>
-    <div class="contact">
-      <a href="mailto:guille.cervantes.brown@gmail.com">guille.cervantes.brown@gmail.com</a>
-      <a href="tel:+51961443614">+51 961 443 614</a>
-      <span>Lima, Perú</span>
+  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
+
+  <div class="contact">
+    <a href="mailto:guille.cervantes.brown@gmail.com">guille.cervantes.brown@gmail.com</a>
+    <span class="dot">·</span>
+    <a href="tel:+51961443614">+51 961 443 614</a>
+    <span class="dot">·</span>
+    <span>Lima, Perú</span>
+  </div>
+
+  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
+
+  <div class="sec">experiencia</div>
+
+  <div class="entry">
+    <div class="yr">24–25</div>
+    <div>
+      <h3>Analista Económico — Dirección de Fiscalización y Aplicación de Incentivos</h3>
+      <div class="org">Organismo de Evaluación y Fiscalización Ambiental · <b>[OEFA]</b></div>
+      <ul>
+        <li>Revisé la idoneidad económica en los procedimientos administrativos sancionadores (PAS) de aproximadamente <b>200 expedientes</b>.</li>
+        <li>Participé en la mejora de la metodología de cálculo de multas de OEFA.</li>
+        <li>Desarrollé herramientas computacionales que automatizaron <b>8 procesos</b> de la dirección.</li>
+      </ul>
+      <div class="bl">8 procesos automatizados, <b>hasta −90%</b> en horas-hombre en algunos casos.</div>
     </div>
-  </header>
+  </div>
 
-  <!-- Perfil -->
-  <section>
-    <div class="label">Perfil</div>
-    <div class="body">
-      <p class="summary">
-        Economista con experiencia en regulación, competencia y economía ambiental, enfocado en el análisis
-        económico aplicado a políticas públicas y procesos sancionadores. Formación de posgrado en gobernabilidad,
-        desarrollo y políticas públicas, con experiencia en el diseño y evaluación de instrumentos regulatorios
-        en el sector público.
-      </p>
+  <div class="entry">
+    <div class="yr">24</div>
+    <div>
+      <h3>Consultor Económico</h3>
+      <div class="org">Estudio Muñiz · <b>[Muñiz]</b></div>
+      <ul>
+        <li>Realicé estudios de mercado y evaluación de condiciones de competencia en <b>5 mercados</b>, que apoyaron decisiones de alto nivel en fusiones y concentraciones.</li>
+        <li>Simulé <b>6 escenarios de multas</b> para dos casos de libre competencia y protección al consumidor.</li>
+        <li>Asesoré a equipos legales y directivos en la interpretación económica de escenarios sancionadores y de competencia.</li>
+      </ul>
+      <div class="bl"><b>5 mercados</b> analizados · <b>6 escenarios</b> de multas simulados para M&amp;A y libre competencia.</div>
     </div>
-  </section>
+  </div>
 
-  <!-- Experiencia -->
-  <section>
-    <div class="label">Experiencia</div>
-    <div class="body">
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="jt">Analista Económico — Dirección de Fiscalización y Aplicación de Incentivos</div>
-          <div class="when">Oct 2024 – Dic 2025</div>
-        </div>
-        <div class="org">Organismo de Evaluación y Fiscalización Ambiental (OEFA)</div>
-        <ul>
-          <li>Revisé la idoneidad económica en los procedimientos administrativos sancionadores (PAS) de aproximadamente <b>200 expedientes</b>.</li>
-          <li>Participé en la mejora de la metodología de cálculo de multas de OEFA.</li>
-          <li>Desarrollé herramientas computacionales que mejoraron <b>8 procesos</b> de la dirección, reduciendo hasta en un <b>90%</b> las horas-hombre en algunos casos.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="jt">Consultor Económico</div>
-          <div class="when">Mar 2024 – Sep 2024</div>
-        </div>
-        <div class="org">Estudio Muñiz S.C.R.L.</div>
-        <ul>
-          <li>Realicé estudios de mercado y evaluación de condiciones de competencia en <b>5 mercados</b>, que apoyaron decisiones de alto nivel en fusiones y concentraciones.</li>
-          <li>Simulé <b>6 escenarios de multas</b> para dos casos de libre competencia y protección al consumidor.</li>
-          <li>Asesoré a equipos legales y directivos en la interpretación económica de escenarios sancionadores y de competencia.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="jt">Consultor Económico</div>
-          <div class="when">Mar 2023 – May 2023</div>
-        </div>
-        <div class="org">INDECOPI</div>
-        <ul>
-          <li>Elaboré una abogacía de competencia y analicé las condiciones de competencia del mercado de transporte fluvial de mercancías del Perú.</li>
-          <li>Diseñé y desarrollé entrevistas a múltiples actores de los mercados investigados para recabar información precisa y relevante.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="jt">Analista Económico</div>
-          <div class="when">Abr 2015 – Sep 2019</div>
-        </div>
-        <div class="org">INDECOPI</div>
-        <ul>
-          <li>Investigué con análisis económico más de <b>10 casos</b> de infracciones a la ley de libre competencia del Perú.</li>
-          <li>Analicé condiciones de competencia de más de <b>5 mercados</b> peruanos.</li>
-          <li>Colaboré en el análisis económico de la modificación de la ley de libre competencia y su modificatoria de 2015.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="jt">Analista Económico</div>
-          <div class="when">Sep 2014 – Abr 2015</div>
-        </div>
-        <div class="org">Ministerio de Transportes y Comunicaciones</div>
-        <ul>
-          <li>Analicé la idoneidad de proyectos de política económica en el sector de transportes y comunicaciones.</li>
-          <li>Desarrollé informes económicos sobre el estado socio-económico de ciudades del Perú para priorizar proyectos viales.</li>
-          <li>Elaboré un estudio econométrico con información primaria sobre el estado de la carretera central y su impacto en los costos logísticos de la macrorregión centro.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="jt">Practicante Profesional</div>
-          <div class="when">Oct 2013 – May 2014</div>
-        </div>
-        <div class="org">OSINERGMIN</div>
-        <ul>
-          <li>Actualicé los informes sectoriales de Electricidad que publica Osinergmin.</li>
-          <li>Realicé recomendaciones sobre cálculos de multas para el sector electricidad.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="jt">Asistente de Investigación</div>
-          <div class="when">Oct 2012 – Nov 2013</div>
-        </div>
-        <div class="org">Pontificia Universidad Católica del Perú (CISEPA)</div>
-        <ul>
-          <li>Realicé evaluaciones de impacto en distintos proyectos de investigación del CISEPA.</li>
-          <li>Elaboré proyectos de investigación para obtención de financiamiento nacional e internacional (CIES, USAID, IDRC, entre otros).</li>
-        </ul>
-      </div>
-
+  <div class="entry">
+    <div class="yr">23</div>
+    <div>
+      <h3>Consultor Económico</h3>
+      <div class="org">Instituto Nacional de Defensa de la Competencia y de la Protección de la Propiedad Intelectual · <b>[INDECOPI]</b></div>
+      <ul>
+        <li>Elaboré una abogacía de competencia y analicé las condiciones de competencia del mercado de transporte fluvial de mercancías del Perú.</li>
+        <li>Diseñé y desarrollé entrevistas a múltiples actores de los mercados investigados para recabar información precisa y relevante.</li>
+      </ul>
     </div>
-  </section>
+  </div>
 
-  <!-- Educación -->
-  <section>
-    <div class="label">Educación</div>
-    <div class="body">
-      <div class="edu">
-        <div class="deg">M.A. Gobernabilidad, Desarrollo y Políticas Públicas</div>
-        <div class="org">IDS, University of Sussex · Reino Unido</div>
-        <div class="when">Ago 2019 – Oct 2020</div>
-        <div class="note">Tesis: «El camino hacia la Ley Marco de Cambio Climático y los conflictos ambientales en Perú».</div>
-      </div>
-      <div class="edu">
-        <div class="deg">Especialización en Fiscalización Ambiental según OEFA (120 h)</div>
-        <div class="org">ENCAP</div>
-        <div class="when">Abr 2024</div>
-      </div>
-      <div class="edu">
-        <div class="deg">Licenciatura en Economía</div>
-        <div class="org">Pontificia Universidad Católica del Perú</div>
-        <div class="when">Jun 2017</div>
-      </div>
-      <div class="edu">
-        <div class="deg">Bachiller en Ciencias Sociales con mención en Economía</div>
-        <div class="org">Pontificia Universidad Católica del Perú</div>
-        <div class="when">Mar 2006 – Dic 2011</div>
-      </div>
+  <div class="entry">
+    <div class="yr">15–19</div>
+    <div>
+      <h3>Analista Económico</h3>
+      <div class="org">Instituto Nacional de Defensa de la Competencia y de la Protección de la Propiedad Intelectual · <b>[INDECOPI]</b></div>
+      <ul>
+        <li>Investigué con análisis económico más de <b>10 casos</b> de infracciones a la ley de libre competencia del Perú.</li>
+        <li>Analicé condiciones de competencia de más de <b>5 mercados</b> peruanos.</li>
+        <li>Colaboré en el análisis económico de la modificación de la ley de libre competencia y su modificatoria de 2015.</li>
+      </ul>
+      <div class="bl"><b>10+ casos</b> de libre competencia investigados · soporte económico a la reforma de la ley.</div>
     </div>
-  </section>
+  </div>
 
-  <!-- Competencias -->
-  <section>
-    <div class="label">Competencias</div>
-    <div class="body">
-      <div class="skill-block">
-        <h4>Análisis económico</h4>
-        <p>Diseño y evaluación de multas administrativas · Economía industrial y competencia (IHH, mercado relevante) · Econometría aplicada · Esquemas regulatorios e incentivos</p>
-      </div>
-      <div class="skill-block">
-        <h4>Análisis ambiental</h4>
-        <p>Economía de la regulación ambiental · Evaluación de incumplimientos ambientales · Costos de adecuación ambiental · Valoración económica de impactos y servicios ambientales · Metodologías de sanciones</p>
-      </div>
-      <div class="skill-block">
-        <h4>Economía política</h4>
-        <p>Stakeholder analysis en contextos regulatorios · Análisis situacional y de gobernanza · Economía política de la regulación</p>
-      </div>
-      <div class="skill-block">
-        <h4>Programación</h4>
-        <p>R · Stata · Google Apps Script · VBA (Excel) · LaTeX</p>
+  <div class="entry">
+    <div class="yr">14–15</div>
+    <div>
+      <h3>Analista Económico</h3>
+      <div class="org">Ministerio de Transportes y Comunicaciones · <b>[MTC]</b></div>
+      <ul>
+        <li>Analicé la idoneidad de proyectos de política económica en el sector de transportes y comunicaciones.</li>
+        <li>Desarrollé informes económicos sobre el estado socio-económico de ciudades del Perú para priorizar proyectos viales.</li>
+        <li>Elaboré un estudio econométrico con información primaria sobre la carretera central y su impacto en los costos logísticos de la macrorregión centro.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="yr">13–14</div>
+    <div>
+      <h3>Practicante Profesional</h3>
+      <div class="org">Organismo Supervisor de la Inversión en Energía y Minería · <b>[OSINERGMIN]</b></div>
+      <ul>
+        <li>Actualicé los informes sectoriales de Electricidad que publica Osinergmin.</li>
+        <li>Realicé recomendaciones sobre cálculos de multas para el sector electricidad.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="yr">12–13</div>
+    <div>
+      <h3>Asistente de Investigación</h3>
+      <div class="org">Pontificia Universidad Católica del Perú · <b>[PUCP · CISEPA]</b></div>
+      <ul>
+        <li>Realicé evaluaciones de impacto en distintos proyectos de investigación del CISEPA.</li>
+        <li>Elaboré proyectos de investigación para financiamiento nacional e internacional (CIES, USAID, IDRC, entre otros).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
+
+  <div class="sec">educación</div>
+
+  <div class="edu">
+    <div class="yr">19–20</div>
+    <div>
+      <h3>M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
+      <div class="org">IDS, University of Sussex · Reino Unido</div>
+      <div class="note">Tesis: «El camino hacia la Ley Marco de Cambio Climático y los conflictos ambientales en Perú».</div>
+    </div>
+  </div>
+  <div class="edu">
+    <div class="yr">24</div>
+    <div>
+      <h3>Especialización en Fiscalización Ambiental según OEFA <span style="color:var(--muted);font-weight:400">(120 h)</span></h3>
+      <div class="org">ENCAP</div>
+    </div>
+  </div>
+  <div class="edu">
+    <div class="yr">17</div>
+    <div>
+      <h3>Licenciatura en Economía</h3>
+      <div class="org">Pontificia Universidad Católica del Perú</div>
+    </div>
+  </div>
+  <div class="edu">
+    <div class="yr">06–11</div>
+    <div>
+      <h3>Bachiller en Ciencias Sociales con mención en Economía</h3>
+      <div class="org">Pontificia Universidad Católica del Perú</div>
+    </div>
+  </div>
+
+  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
+
+  <div class="sec">competencias</div>
+
+  <div class="skills">
+    <div class="skill">
+      <h4>Análisis económico</h4>
+      <p>Diseño y evaluación de multas administrativas · Economía industrial y competencia (IHH, mercado relevante) · Econometría aplicada · Esquemas regulatorios e incentivos.</p>
+    </div>
+    <div class="skill">
+      <h4>Análisis ambiental</h4>
+      <p>Economía de la regulación ambiental · Evaluación de incumplimientos · Costos de adecuación · Valoración económica de impactos y servicios ambientales · Metodologías de sanciones.</p>
+    </div>
+    <div class="skill">
+      <h4>Economía política</h4>
+      <p>Stakeholder analysis en contextos regulatorios · Análisis situacional y de gobernanza · Economía política de la regulación.</p>
+    </div>
+    <div class="skill">
+      <h4>Programación</h4>
+      <div class="stack">
+        <code>R</code><code>Stata</code><code>Google Apps Script</code><code>VBA (Excel)</code><code>LaTeX</code>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Idiomas -->
-  <section>
-    <div class="label">Idiomas</div>
-    <div class="body">
-      <div class="meta-row"><b>Español</b><span>Nativo</span></div>
-      <div class="meta-row"><b>Inglés</b><span>Avanzado</span></div>
-    </div>
-  </section>
+  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
 
-  <!-- Otros -->
-  <section>
-    <div class="label">Otros</div>
-    <div class="body">
-      <div class="extra">
-        <h4>Proyecto de análisis legislativo y gobernanza <span class="when">· En desarrollo</span></h4>
-        <p>Construcción de una base de datos a partir de actas del Congreso para medir el desempeño parlamentario (participación, temas y patrones), con aplicaciones en accountability y evaluación de políticas.</p>
-      </div>
-      <div class="extra">
-        <h4>Docencia <span class="when">· Sep – Dic 2014</span></h4>
-        <p>Asistente de docencia en Teoría de Juegos y Estrategia, Facultad de Economía — USMP.</p>
-      </div>
-      <div class="extra">
-        <h4>Cursos y seminarios</h4>
-        <p class="course"><b>Fundamentos de Economía de Transporte y diseño de Contratos de Concesión</b> — PUCP, Ago 2014<br>
-        <b>Supervisión del diseño y construcción de metros subterráneos</b> — Banco Mundial, Ago 2014<br>
-        <b>Solver y Simulación Monte Carlo con Crystal Ball</b> — PUCP, Oct 2011</p>
-      </div>
-    </div>
-  </section>
+  <div class="sec">esto y aquello</div>
+
+  <div class="line"><b>Proyecto en desarrollo.</b> Base de datos a partir de actas del Congreso para medir desempeño parlamentario (participación, temas y patrones), con usos en accountability y evaluación de políticas. <span class="when">[en curso]</span></div>
+  <div class="line"><b>Docencia.</b> Asistente en Teoría de Juegos y Estrategia, Facultad de Economía — USMP. <span class="when">[2014]</span></div>
+  <div class="line"><b>Cursos.</b> Economía de Transporte y Contratos de Concesión — PUCP · Diseño y construcción de metros subterráneos — Banco Mundial · Simulación Monte Carlo con Crystal Ball — PUCP.</div>
+  <div class="line"><b>Idiomas.</b> Español <span class="when">(nativo)</span> · Inglés <span class="when">(avanzado)</span>.</div>
+
+  <div class="rule thin" aria-hidden="true">--------------------------------------------------------------------------------------------------------------------------------------------------</div>
+
+  <footer>// guillermo cervantes brown · lima, perú · <span id="yr"></span></footer>
 
 </div>
-
-<footer>© <span id="yr"></span> Guillermo Cervantes Brown · Lima, Perú</footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
