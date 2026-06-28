@@ -33,32 +33,38 @@
   }
   .wrap{max-width:var(--max);margin:0 auto}
 
-  /* ---- top bar ---- */
-  .topbar{
-    position:sticky;top:0;z-index:100;
-    background:rgba(255,255,255,0.92);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-    padding:14px 0;
-    margin-bottom:56px;
-    transition:box-shadow .2s;
+  /* ---- nombre flotante ---- */
+  .name-pill{
+    position:sticky;top:16px;z-index:100;
+    display:flex;justify-content:center;
+    pointer-events:none;
+    margin-bottom:40px;
   }
-  .topbar.scrolled{box-shadow:0 1px 0 var(--faint)}
-  .topbar .name-small{
-    grid-column:2;
-    font-family:'Georgia','Times New Roman',serif;
-    font-size:15px;font-weight:400;
-    color:var(--ink);letter-spacing:.3px;
-    white-space:nowrap;text-align:center;
+  .name-pill span{
+    pointer-events:auto;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border:1px solid var(--faint);
+    border-radius:999px;
+    padding:7px 20px;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:14px;font-weight:500;
+    color:var(--ink);letter-spacing:.1px;
+    white-space:nowrap;
+    box-shadow:0 2px 12px rgba(0,0,0,0.06);
   }
-  .topbar a{
-    grid-column:3;justify-self:end;
+  /* ---- pdf link ---- */
+  .pdf-link{
+    display:flex;justify-content:flex-end;
+    margin-bottom:48px;
+  }
+  .pdf-link a{
     font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
     text-decoration:none;border:1px solid var(--faint);border-radius:6px;
     padding:5px 11px;transition:color .15s,border-color .15s;
   }
-  .topbar a:hover{color:var(--ink);border-color:var(--muted)}
+  .pdf-link a:hover{color:var(--ink);border-color:var(--muted)}
 
   /* ---- hero ---- */
   .hero{margin-bottom:56px}
@@ -233,9 +239,13 @@
 <body>
 <div class="wrap">
 
-  <!-- top bar -->
-  <div class="topbar">
-    <span class="name-small">Guillermo Cervantes Brown</span>
+  <!-- nombre flotante -->
+  <div class="name-pill">
+    <span>Guillermo Cervantes Brown</span>
+  </div>
+
+  <!-- pdf link -->
+  <div class="pdf-link">
     <a href="#" onclick="window.print();return false;">[ descargar pdf ]</a>
   </div>
 
@@ -465,10 +475,6 @@
     document.getElementById('moreBtnWrap').style.display = expand ? 'none' : '';
     document.getElementById('lessBtnWrap').style.display = expand ? '' : 'none';
   }
-  const topbar = document.querySelector('.topbar');
-  window.addEventListener('scroll', () => {
-    topbar.classList.toggle('scrolled', window.scrollY > 10);
-  }, {passive:true});
 </script>
 </body>
 </html>
