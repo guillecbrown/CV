@@ -200,28 +200,32 @@
   .h3-clickable:hover{color:var(--accent)}
 
   /* ---- popover ---- */
+  .h3-wrap{position:relative;display:block}
   .popover{
-    display:none;position:absolute;z-index:200;
+    position:absolute;left:0;top:calc(100% + 8px);z-index:200;
     background:#fff;
     border:1px solid var(--faint);
     border-radius:10px;
     box-shadow:0 8px 32px rgba(0,0,0,0.14);
     overflow:hidden;
-    width:260px;
+    width:280px;
+    visibility:hidden;opacity:0;
+    transition:opacity .18s,visibility .18s;
+    pointer-events:none;
   }
-  .popover.active{display:block}
-  .popover img{
-    display:block;width:100%;height:auto;
+  .popover.active{
+    visibility:visible;opacity:1;
+    pointer-events:auto;
   }
+  .popover img{display:block;width:100%;height:auto;}
   .popover-close{
     position:absolute;top:6px;right:8px;
-    font-family:'JetBrains Mono',monospace;font-size:14px;
-    color:#fff;cursor:pointer;opacity:.8;transition:opacity .15s;
-    background:rgba(0,0,0,0.35);border:none;border-radius:50%;
+    font-family:'JetBrains Mono',monospace;font-size:13px;
+    color:#fff;cursor:pointer;opacity:.85;transition:opacity .15s;
+    background:rgba(0,0,0,0.4);border:none;border-radius:50%;
     width:22px;height:22px;line-height:22px;text-align:center;padding:0;
   }
   .popover-close:hover{opacity:1}
-  .h3-wrap{position:relative;display:block}
 
   /* ---- skills ---- */
   .skills{display:flex;flex-direction:column;gap:14px}
@@ -441,7 +445,7 @@
       <div class="node"></div>
       <div>
         <div class="h3-wrap">
-          <h3 class="h3-clickable" onclick="togglePopover(event)">M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
+          <h3 class="h3-clickable">M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
           <div class="popover" id="sussexPopover">
             <button class="popover-close" onclick="closePopover()">✕</button>
             <img src="sussex.jpg" alt="University of Sussex">
@@ -509,19 +513,27 @@
 
 <script>
   document.getElementById('yr').textContent=new Date().getFullYear();
-  function togglePopover(e){
-    e.stopPropagation();
-    const pop = document.getElementById('sussexPopover');
-    pop.classList.toggle('active');
-  }
-  function closePopover(){
-    document.getElementById('sussexPopover').classList.remove('active');
-  }
-  document.addEventListener('click', e => {
-    const pop = document.getElementById('sussexPopover');
-    if(!pop.contains(e.target)) pop.classList.remove('active');
+  let popoverOpen = false;
+  const sussexPop = document.getElementById('sussexPopover');
+
+  document.querySelector('.h3-clickable').addEventListener('click', function(e){
+    popoverOpen = !popoverOpen;
+    sussexPop.classList.toggle('active', popoverOpen);
   });
-  document.addEventListener('keydown', e => { if(e.key==='Escape') closePopover(); });
+  document.getElementById('sussexPopover').querySelector('.popover-close').addEventListener('click', function(e){
+    e.stopPropagation();
+    popoverOpen = false;
+    sussexPop.classList.remove('active');
+  });
+  document.addEventListener('click', function(e){
+    if(popoverOpen && !e.target.closest('.h3-wrap')){
+      popoverOpen = false;
+      sussexPop.classList.remove('active');
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key==='Escape'){ popoverOpen=false; sussexPop.classList.remove('active'); }
+  });
   function toggleEarly(expand){
     document.getElementById('earlyGroup').classList.toggle('open', expand);
     document.getElementById('moreBtnWrap').style.display = expand ? 'none' : '';
