@@ -112,21 +112,16 @@
   }
   .stats span{display:block}
 
-  /* ---- ascii rule ---- */
-  .rule{
-    font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1;
-    color:var(--faint);overflow:hidden;white-space:nowrap;user-select:none;
-    margin:36px 0;letter-spacing:1px;
-  }
-  .rule.thin{color:#ececec}
-
   /* ---- section header ---- */
   .sec{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;
-    letter-spacing:2px;text-transform:uppercase;color:var(--muted);
-    margin-bottom:30px;
+    font-size:clamp(20px,3vw,26px);
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.2;
+    letter-spacing:-.7px;
+    margin-bottom:28px;
+    margin-top:56px;
   }
-  .sec::before{content:"## ";color:var(--faint)}
 
   /* ---- timeline ---- */
   .tl{position:relative}
@@ -209,7 +204,6 @@
     .more-wrap{padding-left:18px;justify-content:flex-start}
     .yr{text-align:left;padding-top:0;margin-bottom:2px;font-size:13px}
     .item{border-left:2px solid var(--faint);padding-left:18px;padding-bottom:26px}
-    .rule{margin:28px 0}
   }
 
   /* ---- print ---- */
@@ -254,8 +248,6 @@
       </div>
     </div>
   </div>
-
-  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
 
   <p class="subhead">Más de una década construyendo análisis económico aplicado en regulación, competencia y política pública.</p>
 
@@ -376,11 +368,27 @@
 
   </div>
 
-  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
-
   <div class="sec">educación</div>
 
   <div class="tl">
+
+    <div class="item">
+      <div class="yr">2006–2011</div>
+      <div class="node"></div>
+      <div>
+        <h3>Bachiller en Ciencias Sociales <span class="at">— mención en Economía</span></h3>
+        <p class="desc">Pontificia Universidad Católica del Perú.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="yr">2017</div>
+      <div class="node"></div>
+      <div>
+        <h3>Licenciatura en Economía</h3>
+        <p class="desc">Pontificia Universidad Católica del Perú.</p>
+      </div>
+    </div>
 
     <div class="item">
       <div class="yr">2019–2020</div>
@@ -401,27 +409,7 @@
       </div>
     </div>
 
-    <div class="item">
-      <div class="yr">2017</div>
-      <div class="node"></div>
-      <div>
-        <h3>Licenciatura en Economía</h3>
-        <p class="desc">Pontificia Universidad Católica del Perú.</p>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="yr">2006–2011</div>
-      <div class="node"></div>
-      <div>
-        <h3>Bachiller en Ciencias Sociales <span class="at">— mención en Economía</span></h3>
-        <p class="desc">Pontificia Universidad Católica del Perú.</p>
-      </div>
-    </div>
-
   </div>
-
-  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
 
   <div class="sec">competencias</div>
 
@@ -446,16 +434,12 @@
     </div>
   </div>
 
-  <div class="rule" aria-hidden="true">====================================================================================================================================================</div>
-
   <div class="sec">esto y aquello</div>
 
   <div class="line"><b>Proyecto en desarrollo.</b> Base de datos a partir de actas del Congreso para medir desempeño parlamentario (participación, temas y patrones), con usos en accountability y evaluación de políticas. <span class="when">[en curso]</span></div>
   <div class="line"><b>Docencia.</b> Asistente en Teoría de Juegos y Estrategia, Facultad de Economía — USMP. <span class="when">[2014]</span></div>
   <div class="line"><b>Cursos.</b> Economía de Transporte y Contratos de Concesión — PUCP · Diseño y construcción de metros subterráneos — Banco Mundial · Simulación Monte Carlo con Crystal Ball — PUCP.</div>
   <div class="line"><b>Idiomas.</b> Español <span class="when">(nativo)</span> · Inglés <span class="when">(avanzado)</span>.</div>
-
-  <div class="rule thin" aria-hidden="true">--------------------------------------------------------------------------------------------------------------------------------------------------</div>
 
   <footer>// guillermo cervantes brown · lima, perú · <span id="yr"></span></footer>
 
