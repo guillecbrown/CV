@@ -214,7 +214,16 @@
   }
   .h3-clickable:hover{color:var(--accent)}
 
-  /* ---- popover ---- */
+  /* ---- enlace de imagen inline ---- */
+  .imgpop{position:relative;display:inline-block}
+  .img-link{
+    cursor:pointer;color:var(--ink);font-weight:600;
+    border-bottom:1.5px dotted var(--accent);
+    transition:color .15s,border-color .15s;
+  }
+  .img-link:hover{color:var(--accent)}
+
+  /* ---- popover / galería ---- */
   .h3-wrap{position:relative;display:block}
   .popover{
     position:absolute;left:0;top:calc(100% + 8px);z-index:200;
@@ -223,7 +232,7 @@
     border-radius:10px;
     box-shadow:0 8px 32px rgba(0,0,0,0.14);
     overflow:hidden;
-    width:280px;
+    width:300px;
     visibility:hidden;opacity:0;
     transition:opacity .18s,visibility .18s;
     pointer-events:none;
@@ -232,9 +241,26 @@
     visibility:visible;opacity:1;
     pointer-events:auto;
   }
-  .popover img{display:block;width:100%;height:auto;}
+  .gallery{position:relative;display:block;background:#fff;min-height:40px}
+  .gallery img{display:block;width:100%;height:auto}
+  .gallery-nav{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+    width:30px;height:30px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(0,0,0,0.45);color:#fff;font-size:19px;padding:0;
+    display:flex;align-items:center;justify-content:center;
+    opacity:.9;transition:opacity .15s,background .15s;
+  }
+  .gallery-nav:hover{opacity:1;background:rgba(0,0,0,0.7)}
+  .gallery-nav.prev{left:8px}
+  .gallery-nav.next{right:8px}
+  .gallery-counter{
+    position:absolute;bottom:8px;left:50%;transform:translateX(-50%);z-index:2;
+    background:rgba(0,0,0,0.55);color:#fff;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.5px;
+    padding:2px 9px;border-radius:999px;
+  }
   .popover-close{
-    position:absolute;top:6px;right:8px;
+    position:absolute;top:6px;right:8px;z-index:3;
     font-family:'JetBrains Mono',monospace;font-size:13px;
     color:#fff;cursor:pointer;opacity:.85;transition:opacity .15s;
     background:rgba(0,0,0,0.4);border:none;border-radius:50%;
@@ -352,7 +378,7 @@
         <ul>
           <li>Revisé la idoneidad económica en los procedimientos administrativos sancionadores (PAS) de aproximadamente <b>200 expedientes</b>.</li>
           <li>Participé en la mejora de la metodología de cálculo de multas de OEFA.</li>
-          <li>Desarrollé herramientas computacionales que automatizaron <b>8 procesos</b> de la dirección.</li>
+          <li>Desarrollé herramientas computacionales que automatizaron <span class="imgpop"><span class="img-link" data-images="proyectos%20OEFA/Dashboard.png, proyectos%20OEFA/presupuesto.png, proyectos%20OEFA/amplitud.png">8 procesos</span><span class="popover"><button class="popover-close" type="button" aria-label="Cerrar">✕</button><span class="gallery"><button class="gallery-nav prev" type="button" aria-label="Anterior">‹</button><img alt="Proyecto OEFA"><button class="gallery-nav next" type="button" aria-label="Siguiente">›</button></span><span class="gallery-counter"><span class="gc-cur">1</span> / <span class="gc-total">1</span></span></span></span> de la dirección.</li>
         </ul>
         <p class="bl"><span class="lbl">En corto</span><span class="arr">→</span>8 procesos automatizados, con reducciones de <b>hasta 90%</b> en horas-hombre en algunos casos.</p>
       </div>
@@ -471,10 +497,15 @@
       <div class="node"></div>
       <div>
         <div class="h3-wrap">
-          <h3 class="h3-clickable">M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
-          <div class="popover" id="sussexPopover">
-            <button class="popover-close" onclick="closePopover()">✕</button>
-            <img src="sussex.jpg" alt="University of Sussex">
+          <h3 class="h3-clickable" data-images="sussex.jpg">M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
+          <div class="popover">
+            <button class="popover-close" type="button" aria-label="Cerrar">✕</button>
+            <div class="gallery">
+              <button class="gallery-nav prev" type="button" aria-label="Anterior">‹</button>
+              <img alt="M.A. University of Sussex">
+              <button class="gallery-nav next" type="button" aria-label="Siguiente">›</button>
+            </div>
+            <div class="gallery-counter"><span class="gc-cur">1</span> / <span class="gc-total">1</span></div>
           </div>
         </div>
         <p class="desc">IDS, University of Sussex · Reino Unido.</p>
@@ -539,27 +570,61 @@
 
 <script>
   document.getElementById('yr').textContent=new Date().getFullYear();
-  let popoverOpen = false;
-  const sussexPop = document.getElementById('sussexPopover');
+  /* ---- galería en popover (genérico: cada .h3-clickable usa su data-images) ---- */
+  (function(){
+    let openPop = null;
+    function closeAll(){ if(openPop){ openPop.classList.remove('active'); openPop=null; } }
 
-  document.querySelector('.h3-clickable').addEventListener('click', function(e){
-    popoverOpen = !popoverOpen;
-    sussexPop.classList.toggle('active', popoverOpen);
-  });
-  document.getElementById('sussexPopover').querySelector('.popover-close').addEventListener('click', function(e){
-    e.stopPropagation();
-    popoverOpen = false;
-    sussexPop.classList.remove('active');
-  });
-  document.addEventListener('click', function(e){
-    if(popoverOpen && !e.target.closest('.h3-wrap')){
-      popoverOpen = false;
-      sussexPop.classList.remove('active');
-    }
-  });
-  document.addEventListener('keydown', e => {
-    if(e.key==='Escape'){ popoverOpen=false; sussexPop.classList.remove('active'); }
-  });
+    document.querySelectorAll('[data-images]').forEach(function(title){
+      const pop = title.parentElement.querySelector('.popover');
+      if(!pop) return;
+      const imgs = (title.dataset.images||'').split(',').map(s=>s.trim()).filter(Boolean);
+      const imgEl = pop.querySelector('.gallery img');
+      const curEl = pop.querySelector('.gc-cur');
+      const totEl = pop.querySelector('.gc-total');
+      const counter = pop.querySelector('.gallery-counter');
+      const prev = pop.querySelector('.gallery-nav.prev');
+      const next = pop.querySelector('.gallery-nav.next');
+      let i = 0;
+      const multi = imgs.length > 1;
+      function show(n){
+        if(!imgs.length || !imgEl) return;
+        i = ((n % imgs.length) + imgs.length) % imgs.length;
+        imgEl.src = imgs[i];
+        if(curEl) curEl.textContent = i+1;
+      }
+      if(totEl) totEl.textContent = imgs.length;
+      if(!multi){
+        if(prev) prev.style.display='none';
+        if(next) next.style.display='none';
+        if(counter) counter.style.display='none';
+      }
+      show(0);
+
+      title.addEventListener('click', function(e){
+        e.stopPropagation();
+        const wasOpen = pop.classList.contains('active');
+        closeAll();
+        if(!wasOpen){ pop.classList.add('active'); openPop = pop; }
+      });
+      if(prev) prev.addEventListener('click', function(e){ e.stopPropagation(); show(i-1); });
+      if(next) next.addEventListener('click', function(e){ e.stopPropagation(); show(i+1); });
+      const closeBtn = pop.querySelector('.popover-close');
+      if(closeBtn) closeBtn.addEventListener('click', function(e){ e.stopPropagation(); closeAll(); });
+      pop.addEventListener('click', function(e){ e.stopPropagation(); });
+      pop._show = show; pop._idx = ()=>i; pop._multi = multi;
+    });
+
+    document.addEventListener('click', function(e){
+      if(openPop && !e.target.closest('.popover')) closeAll();
+    });
+    document.addEventListener('keydown', function(e){
+      if(!openPop) return;
+      if(e.key==='Escape') closeAll();
+      else if(e.key==='ArrowLeft' && openPop._multi) openPop._show(openPop._idx()-1);
+      else if(e.key==='ArrowRight' && openPop._multi) openPop._show(openPop._idx()+1);
+    });
+  })();
   function toggleEarly(expand){
     document.getElementById('earlyGroup').classList.toggle('open', expand);
     document.getElementById('moreBtnWrap').style.display = expand ? 'none' : '';
