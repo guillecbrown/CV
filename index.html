@@ -192,6 +192,36 @@
   }
   .early-group.open{max-height:none;-webkit-mask-image:none;mask-image:none}
 
+  /* ---- título clickeable ---- */
+  .h3-clickable{
+    cursor:pointer;
+    transition:color .15s;
+  }
+  .h3-clickable:hover{color:var(--accent)}
+
+  /* ---- lightbox ---- */
+  .lightbox{
+    display:none;position:fixed;inset:0;z-index:1000;
+    background:rgba(0,0,0,0.7);
+    align-items:center;justify-content:center;
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+  }
+  .lightbox.active{display:flex}
+  .lightbox img{
+    max-width:90vw;max-height:88vh;
+    border-radius:10px;
+    box-shadow:0 24px 64px rgba(0,0,0,0.4);
+    object-fit:contain;
+  }
+  .lightbox-close{
+    position:absolute;top:20px;right:24px;
+    font-family:'JetBrains Mono',monospace;font-size:20px;
+    color:#fff;cursor:pointer;opacity:.7;transition:opacity .15s;
+    background:none;border:none;line-height:1;
+  }
+  .lightbox-close:hover{opacity:1}
+
   /* ---- skills ---- */
   .skills{display:flex;flex-direction:column;gap:14px}
   .skill h4{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.2px;margin-bottom:3px}
@@ -398,7 +428,7 @@
 
     <div class="item">
       <div class="yr">2024</div>
-      <div class="node sub"></div>
+      <div class="node"></div>
       <div>
         <h3>Especialización en Fiscalización Ambiental según OEFA <span class="at">(120 h)</span></h3>
         <p class="desc">ENCAP — Escuela Nacional de Capacitación y Actualización Profesional.</p>
@@ -409,7 +439,7 @@
       <div class="yr">2019–2020</div>
       <div class="node"></div>
       <div>
-        <h3>M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
+        <h3 class="h3-clickable" onclick="openLightbox()">M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
         <p class="desc">IDS, University of Sussex · Reino Unido.</p>
         <p class="bl"><span class="lbl">Tesis</span><span class="arr">→</span><i>«El camino hacia la Ley Marco de Cambio Climático y los conflictos ambientales en Perú».</i></p>
       </div>
@@ -468,8 +498,21 @@
   <footer>// guillermo cervantes brown · lima, perú · <span id="yr"></span></footer>
 
 </div>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img src="sussex.jpg" alt="University of Sussex">
+</div>
+
 <script>
   document.getElementById('yr').textContent=new Date().getFullYear();
+  function openLightbox(){document.getElementById('lightbox').classList.add('active')}
+  function closeLightbox(e){
+    if(!e||e.target===document.getElementById('lightbox')||e.target.classList.contains('lightbox-close'))
+      document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
   function toggleEarly(expand){
     document.getElementById('earlyGroup').classList.toggle('open', expand);
     document.getElementById('moreBtnWrap').style.display = expand ? 'none' : '';
