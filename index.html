@@ -199,28 +199,29 @@
   }
   .h3-clickable:hover{color:var(--accent)}
 
-  /* ---- lightbox ---- */
-  .lightbox{
-    display:none;position:fixed;inset:0;z-index:1000;
-    background:rgba(0,0,0,0.7);
-    align-items:center;justify-content:center;
-    backdrop-filter:blur(4px);
-    -webkit-backdrop-filter:blur(4px);
-  }
-  .lightbox.active{display:flex}
-  .lightbox img{
-    max-width:90vw;max-height:88vh;
+  /* ---- popover ---- */
+  .popover{
+    display:none;position:absolute;z-index:200;
+    background:#fff;
+    border:1px solid var(--faint);
     border-radius:10px;
-    box-shadow:0 24px 64px rgba(0,0,0,0.4);
-    object-fit:contain;
+    box-shadow:0 8px 32px rgba(0,0,0,0.14);
+    overflow:hidden;
+    width:260px;
   }
-  .lightbox-close{
-    position:absolute;top:20px;right:24px;
-    font-family:'JetBrains Mono',monospace;font-size:20px;
-    color:#fff;cursor:pointer;opacity:.7;transition:opacity .15s;
-    background:none;border:none;line-height:1;
+  .popover.active{display:block}
+  .popover img{
+    display:block;width:100%;height:auto;
   }
-  .lightbox-close:hover{opacity:1}
+  .popover-close{
+    position:absolute;top:6px;right:8px;
+    font-family:'JetBrains Mono',monospace;font-size:14px;
+    color:#fff;cursor:pointer;opacity:.8;transition:opacity .15s;
+    background:rgba(0,0,0,0.35);border:none;border-radius:50%;
+    width:22px;height:22px;line-height:22px;text-align:center;padding:0;
+  }
+  .popover-close:hover{opacity:1}
+  .h3-wrap{position:relative;display:inline}
 
   /* ---- skills ---- */
   .skills{display:flex;flex-direction:column;gap:14px}
@@ -439,7 +440,13 @@
       <div class="yr">2019–2020</div>
       <div class="node"></div>
       <div>
-        <h3 class="h3-clickable" onclick="openLightbox()">M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
+        <div class="h3-wrap">
+          <h3 class="h3-clickable" onclick="togglePopover(event)">M.A. Gobernabilidad, Desarrollo y Políticas Públicas</h3>
+          <div class="popover" id="sussexPopover">
+            <button class="popover-close" onclick="closePopover()">✕</button>
+            <img src="sussex.jpg" alt="University of Sussex">
+          </div>
+        </div>
         <p class="desc">IDS, University of Sussex · Reino Unido.</p>
         <p class="bl"><span class="lbl">Tesis</span><span class="arr">→</span><i>«El camino hacia la Ley Marco de Cambio Climático y los conflictos ambientales en Perú».</i></p>
       </div>
@@ -499,20 +506,22 @@
 
 </div>
 
-<!-- lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img src="sussex.jpg" alt="University of Sussex">
-</div>
 
 <script>
   document.getElementById('yr').textContent=new Date().getFullYear();
-  function openLightbox(){document.getElementById('lightbox').classList.add('active')}
-  function closeLightbox(e){
-    if(!e||e.target===document.getElementById('lightbox')||e.target.classList.contains('lightbox-close'))
-      document.getElementById('lightbox').classList.remove('active');
+  function togglePopover(e){
+    e.stopPropagation();
+    const pop = document.getElementById('sussexPopover');
+    pop.classList.toggle('active');
   }
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
+  function closePopover(){
+    document.getElementById('sussexPopover').classList.remove('active');
+  }
+  document.addEventListener('click', e => {
+    const pop = document.getElementById('sussexPopover');
+    if(!pop.contains(e.target)) pop.classList.remove('active');
+  });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closePopover(); });
   function toggleEarly(expand){
     document.getElementById('earlyGroup').classList.toggle('open', expand);
     document.getElementById('moreBtnWrap').style.display = expand ? 'none' : '';
