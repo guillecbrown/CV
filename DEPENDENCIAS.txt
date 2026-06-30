@@ -1,0 +1,47 @@
+CV WEB — Guillermo Cervantes Brown
+===================================
+
+QUÉ ES
+  Página web de una sola página (index.html) con el CV. Casi 100%
+  autocontenida: todo el HTML, CSS y JS van dentro de index.html. No hay
+  build, ni frameworks, ni dependencias que instalar. La única pieza
+  externa es la imagen del diploma (sussex.jpg).
+
+PARA VERLO EN LOCAL
+  - Opción 1: doble clic en index.html (se abre en el navegador).
+  - Opción 2 (servidor local, igual que la preview):
+        python -m http.server 8137 --directory "CV Web"
+    y abrir  http://localhost:8137
+
+REQUISITOS
+  - Un navegador moderno (Chrome, Edge, Firefox).
+  - Conexión a internet SOLO para cargar las fuentes (Google Fonts:
+    Inter + JetBrains Mono). Sin internet igual funciona, pero usaría
+    fuentes de respaldo del sistema (sans y monoespaciada).
+  - Las imagenes foto.png y sussex.jpg deben estar en la MISMA carpeta
+    que index.html (el index las referencia como src="foto.png" y
+    src="sussex.jpg").
+
+FUNCIONALIDAD QUE DEPENDE DE ARCHIVOS
+  - Foto del hero: foto.png es el retrato (4:5, fondo blanco) que va en
+    la columna derecha de la cabecera (.hero-photo). Si falta, queda un
+    hueco / imagen rota.
+  - Diploma: al hacer clic en el título de la Maestría (M.A. Sussex) se
+    abre un popover con la imagen sussex.jpg. Si falta ese archivo, el
+    popover abre vacío / con imagen rota.
+  - Botón "Descargar PDF" (arriba a la derecha): usa el diálogo de
+    impresión del navegador. Elegir "Guardar como PDF", tamaño A4.
+
+PUBLICAR EN GITHUB PAGES
+  1. Crear repo en github.com (ej. "cv"), público.
+  2. Subir A LA RAÍZ del repo:  index.html  +  foto.png  +  sussex.jpg
+     (¡los tres! si no, la foto o el diploma no cargan online).
+  3. Settings > Pages > Branch: main / (root) > Save.
+  4. Queda en  https://TU-USUARIO.github.io/cv
+
+ARCHIVOS
+  index.html        -> la página completa (HTML + CSS + JS inline)
+  foto.png          -> retrato del hero (4:5, fondo blanco)
+  sussex.jpg        -> diploma de la Maestría (lo carga el popover)
+  DEPENDENCIAS.txt  -> este archivo
+  .claude/          -> config local de preview (no se publica)
